@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Gallery</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 15px;
+            transform: rotate(45deg);
+        }
+
+        .diamond {
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .diamond img {
+            width: 140%;
+            height: 140%;
+            object-fit: cover;
+            transform: rotate(-45deg);
+            transition: transform 0.3s ease;
+        }
+
+        .diamond:hover {
+            transform: scale(1.1);
+        }
+
+        .diamond:hover img {
+            transform: scale(1.2) rotate(-45deg);
+        }
+    </style>
+</head>
+<body>
+<div class="gallery-container">
+    <div class="gallery" id="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+</div>
+
+<script>
+
+    const image_list = [
+        "istockphoto-1866732876-1024x1024.jpg",
+        "premium_photo-1664304102989-6048cbdc2051.jpeg",
+        "premium_photo-1664474619075-644dd191935f.jpeg",
+        "premium_photo-1687382111414-7b87afa5da34.jpeg",
+        "premium_photo-1698117060307-f112d36bb4d8.jpeg",
+        "premium_photo-1698117060307-f112d36bb4d8.jpeg",
+        "premium_photo-1698117060307-f112d36bb4d8.jpeg",
+        "premium_photo-1698117060307-f112d36bb4d8.jpeg",
+        "premium_photo-1698117060307-f112d36bb4d8.jpeg"
+    ];
+    const gallery = document.getElementById('gallery');
+    const uri = `./../images/`;
+
+    for (let i = 0; i < image_list.length; i++) {
+        const final_image_uri = uri + image_list[i];
+        const img = document.createElement('img');
+        img.src = final_image_uri;
+        img.alt = 'Unsplash Image';
+        const diamond = document.createElement('div');
+        diamond.className = 'diamond';
+        diamond.appendChild(img);
+        gallery.appendChild(diamond);
+    }
+</script>
+</body>
+</html>
